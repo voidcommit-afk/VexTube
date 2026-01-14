@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback, useMemo } from 'react';
+import Image from 'next/image';
 import { Trash2, History } from 'lucide-react';
 import { PlaylistInput } from '@/components/PlaylistInput';
 import { VideoPlayer } from '@/components/VideoPlayer';
@@ -10,6 +11,7 @@ import { PlaylistData } from '@/lib/types';
 import { saveToStorage, loadFromStorage, getStoredVideoStatus, clearStorage } from '@/lib/storage';
 import { fetchPlaylistVideos } from '@/lib/youtube';
 import { NoteHistory } from '@/components/NoteHistory';
+import { AuthButton } from '@/components/auth-button';
 
 export default function Home() {
     const [playlistData, setPlaylistData] = useState<PlaylistData>({
@@ -150,6 +152,13 @@ export default function Home() {
             <div className="flex-1 max-w-7xl mx-auto p-4 sm:p-6 lg:p-8 w-full">
                 <div className="flex justify-between items-center mb-8 animate-slide-in">
                     <div className={`flex items-center gap-3 transition-opacity duration-300 ${cinemaMode ? 'opacity-0' : 'opacity-100'}`}>
+                        <Image
+                            src="/logo.jpg"
+                            alt="VexTube Logo"
+                            width={40}
+                            height={40}
+                            className="rounded-lg"
+                        />
                         <h1 className="text-3xl font-normal text-gray-200">
                             VexTube
                         </h1>
@@ -170,6 +179,9 @@ export default function Home() {
                                 <Trash2 size={18} />
                                 <span className="hidden sm:inline">Clear Data</span>
                             </button>
+                        </div>
+                        <div className="border-l border-gray-700 pl-4">
+                            <AuthButton />
                         </div>
                     </div>
                 </div>
