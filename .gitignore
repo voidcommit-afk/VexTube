@@ -39,3 +39,5 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+EXECUTION_BLUPRINT.md
+EXECUTION_BLUEPRINT.md
