@@ -4,7 +4,7 @@ A focused YouTube learning platform designed for distraction-free video consumpt
 
 ## Overview
 
-VexTube is a web application that enhances the YouTube learning experience by removing distractions and providing tools for effective learning. It supports both individual videos and full playlists, with features for progress tracking, AI-powered summaries, and comprehensive note-taking.
+VexTube is a web application that enhances the YouTube learning experience by removing distractions and providing tools for effective learning. It supports both individual videos and full playlists, with features for progress tracking and comprehensive note-taking.
 
 ## Features
 
@@ -16,8 +16,7 @@ VexTube is a web application that enhances the YouTube learning experience by re
 - Cinema mode for distraction-free viewing
 - Fullscreen support
 
-### AI-Powered Learning
-- Automatic video summaries using Google Gemini 2.0 Flash
+### Rich Content Support
 - Rich text rendering with Markdown support
 - Mathematical formula rendering with KaTeX
 - Code syntax highlighting
@@ -48,9 +47,9 @@ VexTube is a web application that enhances the YouTube learning experience by re
 - Custom glassmorphism effects
 
 ### APIs & Services
-- YouTube Data API v3 for video metadata
-- Google Gemini API for AI summaries
-- LocalStorage for data persistence
+- YouTube Data API v3 for video metadata (server-side only)
+- Supabase for data persistence
+- LocalStorage for offline caching
 
 ### Key Libraries
 - react-youtube for video embedding
@@ -70,8 +69,22 @@ VexTube is a web application that enhances the YouTube learning experience by re
 Create a `.env.local` file in the root directory:
 
 ```env
-NEXT_PUBLIC_YOUTUBE_API_KEY=your_youtube_api_key
-NEXT_PUBLIC_GEMINI_API_KEY=your_gemini_api_key
+# YouTube API (Server-side only - do NOT use NEXT_PUBLIC prefix)
+YOUTUBE_API_KEY=your_youtube_api_key
+
+# Google OAuth
+GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_CLIENT_SECRET=your_google_client_secret
+
+# NextAuth.js
+AUTH_SECRET=your_auth_secret
+NEXTAUTH_SECRET=your_nextauth_secret
+NEXTAUTH_URL=http://localhost:3000
+
+# Supabase (Public keys work with Row-Level Security)
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key
 ```
 
 ### Installation
@@ -106,20 +119,21 @@ npm run lint
 ```
 src/
 ├── app/
+│   ├── api/                  # Server-side API routes
+│   │   └── youtube/          # YouTube API proxy routes
 │   ├── page.tsx              # Landing page
 │   ├── app/page.tsx          # Main application
 │   ├── layout.tsx            # Root layout
 │   └── globals.css           # Global styles
 ├── components/
 │   ├── VideoPlayer.tsx       # Video player with controls
-│   ├── VideoSummary.tsx      # AI summary generation
 │   ├── NoteTaker.tsx         # Note-taking interface
 │   ├── NoteHistory.tsx       # Note management
 │   ├── PlaylistSidebar.tsx   # Video list navigation
 │   └── ui/                   # Reusable UI components
 └── lib/
-    ├── youtube.ts            # YouTube API integration
-    ├── gemini.ts             # Gemini API integration
+    ├── youtube.ts            # YouTube client (calls server routes)
+    ├── supabase.ts           # Supabase client
     ├── storage.ts            # LocalStorage utilities
     └── types.ts              # TypeScript definitions
 ```
@@ -133,23 +147,17 @@ src/
 3. Enable the YouTube Data API v3
 4. Create credentials (API key)
 5. Restrict the API key to YouTube Data API v3
-6. Add the key to `.env.local`
+6. Add the key to `.env.local` as `YOUTUBE_API_KEY` (NOT `NEXT_PUBLIC_`)
 
-### Google Gemini API
-
-1. Go to [Google AI Studio](https://makersuite.google.com/app/apikey)
-2. Create an API key
-3. Add the key to `.env.local`
+> **Important**: The YouTube API key is used server-side only to prevent exposure in client bundles.
 
 ## Data Storage
 
-Currently, all data is stored locally in the browser using LocalStorage:
+Data is stored in Supabase with LocalStorage fallback:
 - Video progress and completion status
 - Playback settings (speed, dark mode)
 - Personal notes with timestamps
 - Playlist state and current position
-
-Note: Data is device-specific and not synced across browsers or devices.
 
 ## Browser Compatibility
 
@@ -164,21 +172,15 @@ Note: Data is device-specific and not synced across browsers or devices.
 - Lazy loading for YouTube player component
 - Throttled LocalStorage writes (1000ms)
 - Memoized components for efficient re-renders
-- Caching for AI summaries
+- Server-side API caching for YouTube data
 
 ## Known Limitations
 
-- No user authentication (planned for future release)
-- No cross-device synchronization (planned for future release)
-- LocalStorage has size limits (typically 5-10MB)
 - YouTube API has daily quota limits (10,000 units/day on free tier)
-- Gemini API rate limits apply
+- LocalStorage has size limits (typically 5-10MB)
 
 ## Future Roadmap
 
-- Google OAuth authentication
-- Cloud database integration (Supabase)
-- Cross-device sync
 - Enhanced gamification features
 - Learning streaks and achievements
 - Advanced note organization
@@ -193,5 +195,4 @@ This is a personal project. All rights reserved.
 - Built with Next.js and React
 - UI components from Radix UI
 - Icons from Lucide React
-- AI powered by Google Gemini
 - Video data from YouTube Data API

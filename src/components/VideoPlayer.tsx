@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { CheckCircle, XCircle, ChevronLeft, ChevronRight, Settings, Maximize, Minimize, Monitor } from 'lucide-react';
 import { Video } from '@/lib/types';
-import { VideoSummary } from './VideoSummary';
 
 const YouTube = dynamic(() => import('react-youtube'), { ssr: false });
 
@@ -198,10 +197,6 @@ export const VideoPlayer = ({
                         <ChevronRight size={20} />
                     </button>
                 </div>
-            </div>
-
-            <div className={isFullscreen ? 'hidden' : ''}>
-                <VideoSummary videoId={video.id} />
             </div>
         </div>
     );

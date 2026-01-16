@@ -44,8 +44,7 @@ export default function LandingPage() {
                     {/* Subheading */}
                     <p className="text-lg sm:text-xl text-vex-muted mb-10 leading-relaxed max-w-2xl mx-auto">
                         Remove ads, comments, and algorithm rabbit holes.
-                        Get <span className="text-white font-medium">AI summaries</span> and
-                        <span className="text-white font-medium"> smart notes</span> instantly.
+                        Take <span className="text-white font-medium">smart notes</span> with instant export.
                     </p>
 
                     {/* CTA Buttons */}
@@ -75,10 +74,10 @@ export default function LandingPage() {
                         🚫 No Ads
                     </span>
                     <span className="flex items-center gap-2 text-sm text-vex-muted">
-                        ✨ AI Summaries
+                        📝 Export-ready note taking
                     </span>
                     <span className="flex items-center gap-2 text-sm text-vex-muted">
-                        📝 Exportable Notes
+                        🎯 Progress tracking
                     </span>
                 </div>
             </footer>
