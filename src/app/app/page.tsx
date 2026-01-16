@@ -266,13 +266,13 @@ export default function AppPage() {
                                 <button
                                     onClick={() => setActiveNav('notes')}
                                     disabled={!hasVideos}
-                                    className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed ${activeNav === 'notes'
+                                    className={`w-full hidden md:flex items-center gap-3 px-4 py-3 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed ${activeNav === 'notes'
                                         ? 'bg-vex-surface/50 border border-vex-border/50 text-white font-medium shadow-sm'
                                         : 'text-vex-muted hover:bg-vex-surfaceHover hover:text-white'
                                         }`}
                                 >
                                     <PenLine className={`w-5 h-5 ${activeNav === 'notes' ? 'text-vex-primary' : ''}`} />
-                                    Notes
+                                    Notes (Desktop only)
                                 </button>
                             </nav>
 
@@ -487,14 +487,7 @@ export default function AppPage() {
                             <Clock className="w-6 h-6" />
                             <span className="text-[10px] font-medium">History</span>
                         </button>
-                        <button
-                            onClick={() => setActiveNav('notes')}
-                            className={`flex-1 flex flex-col items-center justify-center gap-1 py-2 active:scale-95 transition-transform ${activeNav === 'notes' ? 'text-vex-primary' : 'text-vex-muted hover:text-white'
-                                }`}
-                        >
-                            <PenLine className="w-6 h-6" />
-                            <span className="text-[10px] font-medium">Notes</span>
-                        </button>
+
                     </nav>
                 </div>
 

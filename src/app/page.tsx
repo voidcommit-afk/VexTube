@@ -74,7 +74,7 @@ export default function LandingPage() {
                         🚫 No Ads
                     </span>
                     <span className="flex items-center gap-2 text-sm text-vex-muted">
-                        📝 Export-ready note taking
+                        📝 Export-ready note taking (Desktop)
                     </span>
                     <span className="flex items-center gap-2 text-sm text-vex-muted">
                         🎯 Progress tracking
