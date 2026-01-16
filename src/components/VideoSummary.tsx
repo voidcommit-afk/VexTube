@@ -54,9 +54,16 @@ export const VideoSummary = memo(({ videoId }: VideoSummaryProps) => {
             </div>
 
             {error && (
-                <div className="mb-4 p-4 rounded-lg bg-red-900/20 border border-red-500/50 text-red-400 text-sm flex items-center gap-2">
-                    <AlertCircle className="w-4 h-4" />
-                    {error}
+                <div className="mb-4 p-4 rounded-lg bg-red-900/20 border border-red-500/50 text-red-400 text-sm">
+                    <div className="flex items-center gap-2">
+                        <AlertCircle className="w-4 h-4 shrink-0" />
+                        <span>{error}</span>
+                    </div>
+                    {error.toLowerCase().includes('quota') && (
+                        <p className="mt-2 text-xs text-red-400/70">
+                            Tip: The AI service has usage limits. Try again in a few minutes.
+                        </p>
+                    )}
                 </div>
             )}
 

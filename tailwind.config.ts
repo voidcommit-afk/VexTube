@@ -11,6 +11,18 @@ const config: Config = {
     theme: {
         extend: {
             colors: {
+                // VexTube Design System
+                vex: {
+                    bg: '#0A0A0A',
+                    surface: '#151515',
+                    surfaceHover: '#252525',
+                    primary: '#00E073',
+                    primaryHover: '#00C968',
+                    text: '#FFFFFF',
+                    muted: '#A1A1A1',
+                    border: '#333333',
+                },
+                // Existing shadcn colors
                 background: 'hsl(var(--background))',
                 foreground: 'hsl(var(--foreground))',
                 card: {
@@ -51,6 +63,16 @@ const config: Config = {
                     '4': 'hsl(var(--chart-4))',
                     '5': 'hsl(var(--chart-5))'
                 }
+            },
+            fontFamily: {
+                sans: ['Inter', 'sans-serif'],
+            },
+            spacing: {
+                'safe-bottom': 'env(safe-area-inset-bottom)',
+            },
+            boxShadow: {
+                'glow': '0 0 40px rgba(0, 224, 115, 0.1)',
+                'glow-strong': '0 0 25px rgba(0, 224, 115, 0.5)',
             },
             borderRadius: {
                 lg: 'var(--radius)',

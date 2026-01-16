@@ -28,6 +28,20 @@
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
 
+    /* VexTube Design System Colors */
+    --color-vex-bg: #0A0A0A;
+    --color-vex-surface: #151515;
+    --color-vex-surfaceHover: #252525;
+    --color-vex-primary: #00E073;
+    --color-vex-primaryHover: #00C968;
+    --color-vex-text: #FFFFFF;
+    --color-vex-muted: #A1A1A1;
+    --color-vex-border: #333333;
+
+    /* Box shadows */
+    --shadow-glow: 0 0 40px rgba(0, 224, 115, 0.1);
+    --shadow-glow-strong: 0 0 25px rgba(0, 224, 115, 0.5);
+
     /* Register colors with Tailwind */
     --color-background: hsl(var(--background));
     --color-foreground: hsl(var(--foreground));
@@ -87,5 +101,35 @@
     body {
         background-color: hsl(var(--background));
         color: hsl(var(--foreground));
+    }
+}
+
+/* VexTube Custom Utilities */
+@layer utilities {
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+
+    .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+}
+
+/* Fix for iOS zoom on input focus */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+
+    input[type="text"],
+    input[type="url"],
+    select,
+    textarea {
+        font-size: 16px !important;
+    }
+}
+
+/* Safe area insets for mobile */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+    .pb-safe-bottom {
+        padding-bottom: env(safe-area-inset-bottom);
     }
 }

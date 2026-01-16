@@ -87,5 +87,5 @@ Provide the summary in markdown format with bullet points. Be brief and to the p
     }
 
     // All retries exhausted
-    throw new Error('Rate limit exceeded. Please wait a moment before trying again.');
+    throw new Error('API quota exceeded. Please wait 1-2 minutes before trying again, or try with a different video.');
 };
